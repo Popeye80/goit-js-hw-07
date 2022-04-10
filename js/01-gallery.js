@@ -26,10 +26,7 @@ function createImagesCardsMarkup(galleryItems) {
     })
     .join('');
            }
-  
-
-// 
-
+ 
 function onClickGalleryImageOpen(evt) {
   const { target } = evt;
   const isTargetImage = target.classList.contains("gallery__image");
@@ -37,23 +34,19 @@ function onClickGalleryImageOpen(evt) {
   if (isTargetImage) {
     evt.preventDefault();
     let isModalOpen = false;
-
     const instance = basicLightbox.create(
       `
          <img src="${evt.target.dataset.source}" width="800" height="600">
       `,
       { onClose: () => document.removeEventListener("keyup", closeModal) }
     );
-
     isModalOpen = instance.show();
-
+    
     if (isModalOpen) {
       document.addEventListener("keyup", closeModal);
     }
-
     // Закрытие модалки по Esc
-
-    function closeModal(evt) {
+function closeModal(evt) {
       if (evt.key === "Escape") {
         instance.close();
       }
